@@ -200,7 +200,7 @@ onClick : function(v) {
 dialog("<MUSIC>","'EnergyDrink'가 재생됩니다.",18,"닫기");
 music = new android.media.MediaPlayer;
 music.reset();
-music.setDataSource("https://raw.githubusercontent.com/SoftSalt/Test/master/%EC%8A%A4%ED%8C%8C%ED%81%B4.mp3");
+music.setDataSource("https://raw.githubusercontent.com/SoftSalt/Test/master/Virtual%20Riot%20-%20Energy%20Drink-1.mp3");
 music.prepare();
 music.start();
 }}));
