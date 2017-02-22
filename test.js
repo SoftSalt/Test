@@ -125,7 +125,7 @@ openMainMenu = function() {
 				layout1.setOrientation(1);
 				
 				var title = new android.widget.TextView(ctx);
-title.setText("\nMENU&BGM\n");
+title.setText("\nMUSIC\n");
 title.setTextSize(25);
 title.setTextColor(android.graphics.Color.argb(255, 0, 0, 0));
 title.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.argb(255, 230, 230, 230)));
@@ -139,7 +139,7 @@ var button = new android.widget.Button(ctx);
 		button.setText("전전전세");				
 		button.setOnClickListener(new android.view.View.OnClickListener({
 onClick : function(v) {
-dialog("공지","이걸 클릭한 시점에서 너도 일반인은 아니구나?",18,"닫기");
+dialog("<MUSIC>","'전전전세'가 재생됩니다.",18,"닫기");
 music = new android.media.MediaPlayer;
 music.reset();
 music.setDataSource("https://raw.githubusercontent.com/SoftSalt/Test/master/%EC%A0%84%EC%A0%84%EC%A0%84%EC%84%B8.mp3");
