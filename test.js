@@ -233,10 +233,6 @@ function selectLevelHook() {
 	makeBtn();
 }
 
-function leaveGame() {
-	removeBtn();
-}
-
 var Arrow={
 shoot:function(p,power,ep,efire,auto){
 var yaw=Entity.getYaw(p)/180*Math.PI;
