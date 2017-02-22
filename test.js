@@ -229,7 +229,7 @@ closeMainMenu = function() {
 	}));
 }
 
-function newLevel() {
+function selectLevelHook() {
 	makeBtn();
 }
 
