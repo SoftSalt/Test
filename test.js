@@ -64,7 +64,7 @@ makeBtn = function() {
 					}
 				}));
 				btn2.setOnClickListener(new android.view.View.OnClickListener({
-					onClick : function() {	Arrow.shoot(Player.getEntity(),99999,0,false,false);
+					onClick : function() {
 						clientMessage("S");
 					}
 				}));
@@ -232,70 +232,3 @@ closeMainMenu = function() {
 function newLevel() {
 	makeBtn();
 }
-
-var Arrow={
-shoot:function(p,power,ep,efire,auto){
-var yaw=Entity.getYaw(p)/180*Math.PI;
-var pitch=(Entity.getPitch(p))/180*Math.PI;
-var sin=-Math.sin(yaw);
-var cos=Math.cos(yaw);
-var ysin=-Math.sin(pitch);
-var ycos=Math.cos(pitch);
-var arrow=Level.spawnMob(Entity.getX(p)+2*sin,Entity.getY(p),Entity.getZ(p)+2*cos,80);
-var explode=true;
-var autoVel;
-if (ep==0||ep==undefined) explode=false;
-if (auto){
-var distance=999;
-var id;
-for each (var i in Entity.getAll()){
-if (Math.sqrt(Math.pow(Entity.getX(p)-Entity.getX(i),2)+Math.pow(Entity.getY(p)-Entity.getY(i),2)+Math.pow(Entity.getZ(p)-Entity.getZ(i),2))<distance&&i!=p&&Entity.getEntityTypeId(i)<=63){
-distance=Math.sqrt(Math.pow(Entity.getX(p)-Entity.getX(i),2)+Math.pow(Entity.getY(p)-Entity.getY(i),2)+Math.pow(Entity.getZ(p)-Entity.getZ(i),2));
-id=i;
-}
-}
-if (id==undefined) return;
-autoVel=id;
-Entity.setVelX(arrow,(Entity.getX(id)-Entity.getX(p))*power);
-Entity.setVelY(arrow,(Entity.getY(id)-Entity.getY(p))*power);
-Entity.setVelZ(arrow,(Entity.getZ(id)-Entity.getZ(p))*power);
-}else{
-Entity.setVelX(arrow,sin*ycos*power);
-Entity.setVelY(arrow,ysin*power);
-Entity.setVelZ(arrow,cos*ycos*power);
-}
-Arrow.flying.push({id:arrow,explode:explode,fire:efire,explodePower:ep,auto:auto,autoVel:autoVel,power:power});
-},
-flying:[],
-thread:new java.lang.Thread({run:function(){while(1){
-java.lang.Thread.sleep(50);
-for (var i in Arrow.flying){
-if (Entity.getY(Arrow.flying[i].id)!=0){
-Arrow.flying[i].x=Entity.getX(Arrow.flying[i].id);
-Arrow.flying[i].y=Entity.getY(Arrow.flying[i].id);
-Arrow.flying[i].z=Entity.getZ(Arrow.flying[i].id);
-}
-if ((Entity.getVelX(Arrow.flying[i].id)==0&&Entity.getVelZ(Arrow.flying[i].id)==0)||Entity.getY(Arrow.flying[i].id)<=0){
-if (Arrow.flying[i].explode){
-Level.explode(Arrow.flying[i].x,Arrow.flying[i].y,Arrow.flying[i].z,Arrow.flying[i].explodePower,Arrow.flying[i].fire);
-}
-Entity.remove(Arrow.flying[i].id);
-Arrow.flying.splice(i,1);
-}else{
-Level.explode(Entity.getX(Arrow.flying[i].id),Entity.getY(Arrow.flying[i].id),Entity.getZ(Arrow.flying[i].id),0.01);
-if (Arrow.flying[i].auto){
-var vx=0,vy=0,vz=0;
-if (Entity.getX(Arrow.flying[i].autoVel)-Entity.getX(Arrow.flying[i].id)>0) vx=1;
-else if (Entity.getX(Arrow.flying[i].autoVel)-Entity.getX(Arrow.flying[i].id)<0) vx=-1;
-if (Entity.getZ(Arrow.flying[i].autoVel)-Entity.getZ(Arrow.flying[i].id)>0) vz=1;
-else if (Entity.getZ(Arrow.flying[i].autoVel)-Entity.getZ(Arrow.flying[i].id)<0) vz=-1;
-Entity.setVelX(Arrow.flying[i].id,vx*Arrow.flying[i].power);
-Entity.setVelY(Arrow.flying[i].id,(Entity.getY(Arrow.flying[i].autoVel)-Entity.getY(Arrow.flying[i].id))*Arrow.flying[i].power+0.07840000092983246/2);
-Entity.setVelZ(Arrow.flying[i].id,vz*Arrow.flying[i].power);
-}
-}
-}
-}}})
-}
-Arrow.thread.start();
-//Arrow.shoot(object 날리는 엔티티, float 속력, int 폭발크기(0이거나 안쓰면 안합니다), boolean 폭발시 불붙음여부, boolean 유도여부);
