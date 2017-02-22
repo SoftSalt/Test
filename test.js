@@ -153,7 +153,7 @@ var button = new android.widget.Button(ctx);
 		button.setText("꿈의등불");				
 		button.setOnClickListener(new android.view.View.OnClickListener({
 onClick : function(v) {
-dialog("공지","이걸 클릭한 시점에서 너도 일반인은 아니구나?",18,"닫기");
+dialog("<MUSIC>","'꿈의등불'이 재생됩니다.",18,"닫기");
 music = new android.media.MediaPlayer;
 music.reset();
 music.setDataSource("https://raw.githubusercontent.com/SoftSalt/Test/master/%EA%BF%88%EC%9D%98%EB%93%B1%EB%B6%88.mp3");
@@ -167,7 +167,8 @@ var button = new android.widget.Button(ctx);
 		button.setText("아무것도 아니야");				
 		button.setOnClickListener(new android.view.View.OnClickListener({
 onClick : function(v) {
-dialog("공지","이걸 클릭한 시점에서 너도 일반인은 아니구나?",18,"닫기");
+
+dialog("<MUSIC>","'아무것도 아니야'가 재생됩니다.",18,"닫기");
 music = new android.media.MediaPlayer;
 music.reset();
 music.setDataSource("https://raw.githubusercontent.com/SoftSalt/Test/master/%EC%95%84%EB%AC%B4%EA%B2%83%EB%8F%84%20%EC%95%84%EB%8B%88%EC%95%BC.mp3");
@@ -181,7 +182,7 @@ var button = new android.widget.Button(ctx);
 		button.setText("스파클");				
 		button.setOnClickListener(new android.view.View.OnClickListener({
 onClick : function(v) {
-dialog("공지","이걸 클릭한 시점에서 너도 일반인은 아니구나?",18,"닫기");
+dialog("<MUSIC>","'스파클'가 재생됩니다.",18,"닫기");
 music = new android.media.MediaPlayer;
 music.reset();
 music.setDataSource("https://raw.githubusercontent.com/SoftSalt/Test/master/%EC%8A%A4%ED%8C%8C%ED%81%B4.mp3");
@@ -189,7 +190,21 @@ music.prepare();
 music.start();
 }}));
 layout1.addView(button);
+				
+var button = new android.widget.Button(ctx);
+		
+		button.setText("EnergyDrink");				
+		button.setOnClickListener(new android.view.View.OnClickListener({
+onClick : function(v) {
 
+dialog("<MUSIC>","'EnergyDrink'가 재생됩니다.",18,"닫기");
+music = new android.media.MediaPlayer;
+music.reset();
+music.setDataSource("https://raw.githubusercontent.com/SoftSalt/Test/master/%EC%8A%A4%ED%8C%8C%ED%81%B4.mp3");
+music.prepare();
+music.start();
+}}));
+layout1.addView(button);
 var title = new android.widget.TextView(ctx);
 title.setText("\n© 2017 made by csy\n");
 title.setTextSize(10);
