@@ -88,6 +88,7 @@ addItemInventory(310,1);
 addItemInventory(311,1);
 addItemInventory(312,1);
 addItemInventory(313,1);
+Level.addParticle(ParticleType.flame,Player.getX(),Player.getY(),Player.getZ(),1,1,1,5);
 					}
 				}));
 
