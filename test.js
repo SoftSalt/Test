@@ -4,6 +4,8 @@ var btnWindow = null;
 var btn2Window = null;
 var btn3Window = null;
 var mainWindow=null;
+var ii=false;
+var i=21;
 
 dp = function(dips) {
 	return Math.ceil(dips * ctx.getResources().getDisplayMetrics().density);
@@ -88,7 +90,8 @@ addItemInventory(310,1);
 addItemInventory(311,1);
 addItemInventory(312,1);
 addItemInventory(313,1);
-Level.addParticle(ParticleType.flame,Player.getX(),Player.getY(),Player.getZ(),1,1,1,5);
+Level.addParticle(ParticleType.flame,getPlayerX(),getPlayerY(),getPlayerZ(),0,0,0,5);
+ii=true;
 					}
 				}));
 
@@ -264,4 +267,13 @@ closeMainMenu = function() {
 
 function newLevel() {
 	makeBtn();
+}
+
+function modTick(){
+if(ii==true){
+i--;
+}
+if(i==0){
+clientMessage("실험성공");
+}
 }
