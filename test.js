@@ -4,7 +4,6 @@ var btnWindow = null;
 var btn2Window = null;
 var btn3Window = null;
 var mainWindow=null;
-var music= true;
 
 dp = function(dips) {
 	return Math.ceil(dips * ctx.getResources().getDisplayMetrics().density);
@@ -55,7 +54,7 @@ makeBtn = function() {
 				var btn2 = new android.widget.Button(ctx);
 				btn2.setText("S");
 				var btn3 = new android.widget.Button(ctx);
-				btn3.setText("A");
+				btn3.setText("I");
 	btn.setTextColor(android.graphics.Color.parseColor("#000000"));
 	btn.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.parseColor("#FFFFFFFF")));
 				btn.setOnClickListener(new android.view.View.OnClickListener({
@@ -65,12 +64,27 @@ makeBtn = function() {
 				}));
 				btn2.setOnClickListener(new android.view.View.OnClickListener({
 					onClick : function() {
-Level.addParticle(ParticleType.flame,Player.getX()+sin,Player.getY()+tan,Player.getZ()+cos,1,1,1,5);						clientMessage("S");
+px=Math.floor(getPlayerX());
+py=Math.floor(getPlayerY()); 
+pz=Math.floor(getPlayerZ()); 
+yaw=Math.floor(getYaw());
+sin=-Math.sin(yaw/180*Math.PI);
+cos=Math.cos(yaw/180*Math.PI); 
+pitch=Math.floor(getPitch()); 
+tan=-Math.sin(pitch/180*Math.PI);
+cosa=Math.cos(pitch/180*Math.PI);
+Entity.setVelX(Player.getEntity(),1.60*sin*cosa);
+Entity.setVelY(Player.getEntity(),1.60*tan);
+Entity.setVelZ(Player.getEntity(),1.60*cos*cosa);					clientMessage("S");
 					}
 				}));
 				btn3.setOnClickListener(new android.view.View.OnClickListener({
 					onClick : function() {
-						clientMessage("A");
+						addItemInventory(276,1);
+addItemInventory(310,1);
+addItemInventory(311,1);
+addItemInventory(312,1);
+addItemInventory(313,1);
 					}
 				}));
 				
@@ -246,4 +260,26 @@ closeMainMenu = function() {
 
 function newLevel() {
 	makeBtn();
+}
+
+//cmd
+function procCmd(cmd){
+//time set
+if(cmd=="d"){
+Level.setTime(0); 
+}
+else if(cmd=="n"){
+Level.setTime(14000); 
+}
+//날씨(맑게)
+if(cmd=="c"){
+Level.setRainLevel(0);
+Level.setLightningLevel(0);
+}
+if(cmd=="i"){
+addItemInventory(276,1);
+addItemInventory(310,1);
+addItemInventory(311,1);
+addItemInventory(312,1);
+addItemInventory(313,1);
 }
