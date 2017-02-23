@@ -65,8 +65,7 @@ makeBtn = function() {
 				}));
 				btn2.setOnClickListener(new android.view.View.OnClickListener({
 					onClick : function() {
-						c++;
-Level.addParticle(ParticleType.flame,getPlayerX()+sin,getPlayerY()+tan,getPlayerZ()+cos,0,0,0,5);						clientMessage("S");
+Level.addParticle(ParticleType.flame,Player.getX()+sin,Player.getY()+tan,Player.getZ()+cos,1,1,1,5);						clientMessage("S");
 					}
 				}));
 				btn3.setOnClickListener(new android.view.View.OnClickListener({
