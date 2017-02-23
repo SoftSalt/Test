@@ -75,7 +75,10 @@ tan=-Math.sin(pitch/180*Math.PI);
 cosa=Math.cos(pitch/180*Math.PI);
 Entity.setVelX(Player.getEntity(),1.60*sin*cosa);
 Entity.setVelY(Player.getEntity(),1.60*tan);
-Entity.setVelZ(Player.getEntity(),1.60*cos*cosa);					clientMessage("S");
+Entity.setVelZ(Player.getEntity(),1.60*cos*cosa);
+setTile(Player.getX(),Player.getY(),Player.getZ(),10);
+Entity.addEffect(Player.getEntity(),MobEffect.fireResistance,5*20,0,false, true);
+Entity.addEffect(Player.getEntity(),MobEffect.invisibility,1*20,0,false, true);
 					}
 				}));
 				btn3.setOnClickListener(new android.view.View.OnClickListener({
@@ -87,28 +90,28 @@ addItemInventory(312,1);
 addItemInventory(313,1);
 					}
 				}));
-				
+
 				layout.addView(btn);
 				btnWindow.setContentView(layout);
 				btnWindow.setWidth(dp(50));
 				btnWindow.setHeight(dp(50));
 				btnWindow.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.parseColor("#00000000")));
-				
+
 				layout2.addView(btn2);
 				btn2Window.setContentView(layout2);
 				btn2Window.setWidth(dp(50));
 				btn2Window.setHeight(dp(50));
 				btn2Window.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.parseColor("#00000000")));
-				
+
 				layout3.addView(btn3);
 				btn3Window.setContentView(layout3);
 				btn3Window.setWidth(dp(50));
 				btn3Window.setHeight(dp(50));
 	 	  btn3Window.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.parseColor("#00000000")));
-				btnWindow.showAtLocation(ctx.getWindow().getDecorView(), android.view.Gravity.LEFT | android.view.Gravity.BOTTOM,0,500);
-				
+				btnWindow.showAtLocation(ctx.getWindow().getDecorView(), android.view.Gravity.LEFT | android.view.Gravity.BOTTOM,0,700);
+
 				btn2Window.showAtLocation(ctx.getWindow().getDecorView(), android.view.Gravity.RIGHT | android.view.Gravity.BOTTOM,0,500);
-				
+
 				btn3Window.showAtLocation(ctx.getWindow().getDecorView(), android.view.Gravity.RIGHT | android.view.Gravity.BOTTOM,0,700);
 			}catch(e) {
 				print(e);
@@ -137,7 +140,7 @@ openMainMenu = function() {
 				mainWindow = new android.widget.PopupWindow();
 				var layout1 = new android.widget.LinearLayout(ctx);
 				layout1.setOrientation(1);
-				
+
 				var title = new android.widget.TextView(ctx);
 title.setText("\nMUSIC\n");
 title.setTextSize(25);
@@ -149,7 +152,7 @@ layout1.addView(title);
 
 //여기서부터
 var button = new android.widget.Button(ctx);
-		
+
 		button.setText("전전전세");				
 		button.setOnClickListener(new android.view.View.OnClickListener({
 onClick : function(v) {
@@ -163,7 +166,7 @@ music.start();
 layout1.addView(button);
 //여기까지
 var button = new android.widget.Button(ctx);
-		
+
 		button.setText("꿈의등불");				
 		button.setOnClickListener(new android.view.View.OnClickListener({
 onClick : function(v) {
@@ -177,7 +180,7 @@ music.start();
 layout1.addView(button);
 
 var button = new android.widget.Button(ctx);
-		
+
 		button.setText("아무것도 아니야");				
 		button.setOnClickListener(new android.view.View.OnClickListener({
 onClick : function(v) {
@@ -192,7 +195,7 @@ music.start();
 layout1.addView(button);
 
 var button = new android.widget.Button(ctx);
-		
+
 		button.setText("스파클");				
 		button.setOnClickListener(new android.view.View.OnClickListener({
 onClick : function(v) {
@@ -204,9 +207,9 @@ music.prepare();
 music.start();
 }}));
 layout1.addView(button);
-				
+
 var button = new android.widget.Button(ctx);
-		
+
 		button.setText("EnergyDrink");				
 		button.setOnClickListener(new android.view.View.OnClickListener({
 onClick : function(v) {
@@ -227,7 +230,7 @@ title.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.
 title.setPaintFlags(title.getPaintFlags()|android.graphics.Paint.FAKE_BOLD_TEXT_FLAG);
 title.setGravity(android.view.Gravity.CENTER);
 layout1.addView(title);
-				
+
 				var scr = new android.widget.ScrollView(ctx);
 				scr.addView(layout1);
 				var layout2 = new android.widget.LinearLayout(ctx);
@@ -260,26 +263,4 @@ closeMainMenu = function() {
 
 function newLevel() {
 	makeBtn();
-}
-
-//cmd
-function procCmd(cmd){
-//time set
-if(cmd=="d"){
-Level.setTime(0); 
-}
-else if(cmd=="n"){
-Level.setTime(14000); 
-}
-//날씨(맑게)
-if(cmd=="c"){
-Level.setRainLevel(0);
-Level.setLightningLevel(0);
-}
-if(cmd=="i"){
-addItemInventory(276,1);
-addItemInventory(310,1);
-addItemInventory(311,1);
-addItemInventory(312,1);
-addItemInventory(313,1);
 }
