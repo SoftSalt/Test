@@ -4,9 +4,7 @@ var btnWindow = null;
 var btn2Window = null;
 var btn3Window = null;
 var mainWindow=null;
-var music= null;
-var sin,cos,tin;
-var c;
+var music= true;
 
 dp = function(dips) {
 	return Math.ceil(dips * ctx.getResources().getDisplayMetrics().density);
@@ -68,9 +66,6 @@ makeBtn = function() {
 				btn2.setOnClickListener(new android.view.View.OnClickListener({
 					onClick : function() {
 						c++;
-sin=Math.sin(c*Math.PI/10);
-cos=Math.sin(c*Math.PI/10);
-tin=Math.sin(c*Math.PI/10);
 Level.addParticle(ParticleType.flame,getPlayerX()+sin,getPlayerY()+tan,getPlayerZ()+cos,0,0,0,5);						clientMessage("S");
 					}
 				}));
